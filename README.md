@@ -14,7 +14,7 @@ The Silver Tongue is a financial literacy RPG designed to bridge the gap between
 From negotiating a salary with a stone Golem to defending against a "Compounding" Dragon, players must master economic principles to survive.
 ## 🎮 Key Features
 
-- **Voice-Action Combat**: Integrated Web Speech API allows players to speak directly to NPCs
+- **Voice-Action Combat**: Real-time speech via Gemini Multimodal Live API for direct negotiation with NPCs
 - **LLM Judgment Engine**: Powered by Gemini 1.5 Flash, the game evaluates logic, sentiment, and vocabulary in real-time
 - **The Truth Lens**: A visual UI mechanic that reveals hidden fraud and scams in Level 8
 - **8 Economic Realms**:
@@ -34,8 +34,8 @@ From negotiating a salary with a stone Golem to defending against a "Compounding
 | **Frontend** | React.js, Vite, TypeScript |
 | **Design** | Figma (Adaptive UI/UX) |
 | **AI** | Google Gemini 1.5 Flash API |
-| **Voice Input** | Web Speech API / Deepgram |
-| **Backend** | Momen (Data persistence & User profiles) |
+| **Voice Input** | Gemini Multimodal Live API |
+| **Backend** | Appwrite (Data persistence & User profiles) |
 
 ## ⚙️ Installation & Setup
 
