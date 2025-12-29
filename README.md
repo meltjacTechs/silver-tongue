@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="public/favicon.svg" alt="Silver Tongue Logo" width="100" height="100" />
+  <h1>Silver Tongue: Capital Quest</h1>
+  <p><strong>An AI-Powered RPG where your voice is your greatest asset</strong></p>
+  <p>Master financial literacy through AI-driven voice negotiations and economic challenges</p>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🌟 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The Silver Tongue is a financial literacy RPG designed to bridge the gap between theoretical knowledge and real-world application. Players navigate an 8-stage world where traditional combat is replaced by AI-driven voice negotiations.
 
-## React Compiler
+From negotiating a salary with a stone Golem to defending against a "Compounding" Dragon, players must master economic principles to survive.
+## 🎮 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Voice-Action Combat**: Integrated Web Speech API allows players to speak directly to NPCs
+- **LLM Judgment Engine**: Powered by Gemini 1.5 Flash, the game evaluates logic, sentiment, and vocabulary in real-time
+- **The Truth Lens**: A visual UI mechanic that reveals hidden fraud and scams in Level 8
+- **8 Economic Realms**:
+  - Valley of Scarcity (Budgeting)
+  - Peaks of Compounding (Debt/Interest)
+  - Sea of Markets (Investing)
+  - Fog of Devaluation (Inflation)
+  - The Iron Works (Labor/Negotiation)
+  - Citadel of Credit (Credit Scores)
+  - The Tax Keep (Taxation)
+  - Mirage Desert (Fraud Prevention)
 
-## Expanding the ESLint configuration
+## 🚀 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React.js, Vite, TypeScript |
+| **Design** | Figma (Adaptive UI/UX) |
+| **AI** | Google Gemini 1.5 Flash API |
+| **Voice Input** | Web Speech API / Deepgram |
+| **Backend** | Momen (Data persistence & User profiles) |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚙️ Installation & Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
+- Gemini API Key
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/silver-tongue-capital-quest.git
+   cd silver-tongue-capital-quest
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_GEMINI_API_KEY=your_api_key_here
+   ```
+
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:5173`
+
+## 🧠 How the AI Works
+
+The game uses a **"Context-Injected Prompting"** strategy. Each level feeds a specific economic persona into the Gemini model, allowing it to evaluate player arguments based on financial logic and sentiment.
+
+### AI Response Structure
+```json
+{
+  "npc_dialogue": "Your argument for a raise is weak. Where is your market data?",
+  "logic_score": 45,
+  "hp_damage": 15,
+  "game_state": "ongoing"
+}
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The AI evaluates:
+- **Logic**: Sound economic reasoning
+- **Sentiment**: Persuasiveness and tone
+- **Vocabulary**: Use of financial terminology
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🤝 Contributing
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This project welcomes contributions! Areas for enhancement include:
+- New "Power Words" and economic arguments
+- Improved AI evaluation logic
+- Additional economic realms and NPCs
+- UI/UX improvements
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 👥 Project Team
+
+Built for the 2025 Hackathon. We're passionate about making financial literacy fun and accessible to everyone.
+
+---
+
+<div align="center">
+  <p><strong>Master your finances through the power of persuasion</strong></p>
+</div>
