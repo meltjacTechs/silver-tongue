@@ -1,9 +1,15 @@
-import React from 'react'
+import { Routes, Route, Navigate } from "react-router-dom";
+import SignIn from "./auth/SignIn";
+import SignUp from "./auth/SignUp";
 
-const App = () => {
+function App() {
   return (
-    <div className='text-black font-semibold text-4xl'>App</div>
-  )
+    <Routes>
+      <Route path="/" element={<Navigate to="/signin" />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
