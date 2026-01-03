@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { account } from "../lib/appwrite";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Sound from "./Sound";
+import type { AudioHandle } from "./Sound";
 
 const MainMenu = () => {
   const [userName, setUserName] = useState<string>("");
+  const [isPlaying, setIsPlaying] = useState(true);
+  const audioRef = useRef<AudioHandle>(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -27,7 +31,26 @@ const MainMenu = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-yellow-500/90 font-sans flex items-center justify-center p-6">
+    <div className="min-h-screen bg-black text-yellow-500/90 font-sans flex items-center justify-center p-6 relative">
+      {/* Sound Component */}
+      <Sound ref={audioRef} src="background.m4a" autoPlay loop volume={0.3} />
+
+      {/* Speaker Icon Button - Upper Left */}
+      <button
+        onClick={() => {
+          if (isPlaying) {
+            audioRef.current?.pause();
+            setIsPlaying(false);
+          } else {
+            audioRef.current?.play();
+            setIsPlaying(true);
+          }
+        }}
+        className="absolute top-6 left-6 z-50 p-3 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/50 hover:border-yellow-500 transition-all hover:scale-110 active:scale-95"
+        title={isPlaying ? "Pause" : "Play"}
+      >
+        <span className="text-2xl">{isPlaying ? "🔊" : "🔇"}</span>
+      </button>
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
