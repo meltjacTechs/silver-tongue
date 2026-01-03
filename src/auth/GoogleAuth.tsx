@@ -5,7 +5,7 @@ const GoogleAuth = () => {
   const loginWithGoogle = () => {
     account.createOAuth2Session(
       OAuthProvider.Google,
-      "http://localhost:5173/game",
+      "http://localhost:5173/main-menu",
       "http://localhost:5173/signin"
     );
   };
