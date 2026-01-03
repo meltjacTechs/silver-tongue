@@ -55,8 +55,15 @@ const SignIn = () => {
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-[400px] space-y-8"
+          className="w-full max-w-[500px] flex gap-8 items-start"
         >
+          {/* Logo on the left */}
+          <div className="flex-shrink-0">
+            <img src="/favicon.svg" alt="Silver Tongue" className="w-16 h-16" />
+          </div>
+
+          {/* Form content on the right */}
+          <div className="flex-1 space-y-8">
           <div className="text-center lg:text-left">
             <h2 className="text-3xl font-black tracking-tight text-white uppercase italic">
                Enter The Realm!
@@ -104,8 +111,9 @@ const SignIn = () => {
           </div>
 
           <p className="text-center text-xs text-gray-500 font-medium tracking-wide">
-            New traveler? <a href="/signup" className="text-yellow-600 hover:text-yellow-400 font-bold underline underline-offset-4 decoration-yellow-900">Create an account</a>
+            New traveler? <a href="/sign-up" className="text-yellow-600 hover:text-yellow-400 font-bold underline underline-offset-4 decoration-yellow-900">Create an account</a>
           </p>
+          </div>
         </motion.div>
       </div>
     </div>

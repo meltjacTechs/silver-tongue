@@ -58,8 +58,15 @@ const SignUp = () => {
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="w-full max-w-[400px] space-y-6"
+          className="w-full max-w-[500px] flex gap-8 items-start"
         >
+          {/* Logo on the left */}
+          <div className="flex-shrink-0">
+            <img src="/favicon.svg" alt="Silver Tongue" className="w-16 h-16" />
+          </div>
+
+          {/* Form content on the right */}
+          <div className="flex-1 space-y-6">
           <div className="text-center lg:text-left">
             <h2 className="text-3xl font-black tracking-widest text-white uppercase italic">
                Forge Your Legend
@@ -121,8 +128,9 @@ const SignUp = () => {
           </div>
 
           <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
-            Already a legend? <a href="/signin" className="text-yellow-600 hover:text-yellow-400 transition-colors underline underline-offset-4 decoration-yellow-900/40">Enter the Gate</a>
+            Already a legend? <a href="/sign-in" className="text-yellow-600 hover:text-yellow-400 transition-colors underline underline-offset-4 decoration-yellow-900/40">Enter the Gate</a>
           </p>
+          </div>
         </motion.div>
       </div>
     </div>

@@ -5,9 +5,9 @@ import SignUp from "./auth/SignUp";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/signin" />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/" element={<Navigate to="/sign-in" />} />
+      <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/sign-up" element={<SignUp />} />
     </Routes>
   );
 }
