@@ -1,134 +1,193 @@
-import { motion } from "framer-motion";
-import { account } from "../lib/appwrite";
-import { useState, useEffect, useRef } from "react";
-import Sound from "./Sound";
-import type { AudioHandle } from "./Sound";
+import React, { useState, useEffect } from 'react';
+import { 
+  Zap, Wallet, Scroll, Settings, LogOut, 
+  TrendingUp, ShieldCheck, Crown,
+  ArrowUpRight, Activity
+} from 'lucide-react';
 
-const MainMenu = () => {
-  const [userName, setUserName] = useState<string>("");
-  const [isPlaying, setIsPlaying] = useState(true);
-  const audioRef = useRef<AudioHandle>(null);
+const ZenithVault = () => {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [balance, setBalance] = useState(125430.75);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const user = await account.get();
-        setUserName(user.name || user.email);
-      } catch (error) {
-        console.error("Failed to get user:", error);
-      }
+    const handleMove = (e: MouseEvent) => {
+      setMouse({
+        x: (e.clientX / window.innerWidth - 0.5) * 40,
+        y: (e.clientY / window.innerHeight - 0.5) * 40,
+      });
     };
-    getUser();
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await account.deleteSession("current");
-      window.location.href = "/sign-in";
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
+  useEffect(() => {
+    const tick = setInterval(() => setBalance(b => b + Math.random() * 0.8), 1000);
+    return () => clearInterval(tick);
+  }, []);
+
+  const menu = [
+    { label: 'INITIATE', sub: 'QUEST LINE', icon: <Zap />, color: 'hover:shadow-[0_0_50px_rgba(251,191,36,0.3)]' },
+    { label: 'TREASURY', sub: 'ASSET MAP', icon: <Wallet />, color: 'hover:shadow-[0_0_50px_rgba(245,158,11,0.3)]' },
+    { label: 'ARCHIVES', sub: 'DATA LOGS', icon: <Scroll />, color: 'hover:shadow-[0_0_50px_rgba(217,119,6,0.3)]' },
+    { label: 'SETTINGS', sub: 'TERMINAL', icon: <Settings />, color: 'hover:shadow-[0_0_50px_rgba(161,161,170,0.3)]' },
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-yellow-500/90 font-sans flex items-center justify-center p-6 relative">
-      {/* Sound Component */}
-      <Sound ref={audioRef} src="background.m4a" autoPlay loop volume={0.3} />
+    <div className="relative w-full h-screen overflow-hidden bg-[#050400] text-amber-50 font-sans select-none perspective-1000 cursor-default">
+      
+      {/* --- BACKGROUND ENGINE --- */}
+      <div 
+        className="absolute inset-0 z-0 transition-transform duration-700 ease-out scale-110"
+        style={{ transform: `translate(${mouse.x * -0.6}px, ${mouse.y * -0.6}px)` }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(251,191,36,0.12)_0%,transparent_60%)] animate-pulse" />
+        
+        {/* Obsidian Monoliths */}
+        {[...Array(6)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute bg-gradient-to-b from-[#1a1500] to-black border-x border-amber-500/10 shadow-[0_0_100px_rgba(0,0,0,1)] animate-float-slow"
+            style={{
+              width: `${120 + i * 40}px`,
+              height: `${250 + i * 80}px`,
+              left: `${10 + i * 18}%`,
+              top: `${15 + (i % 3) * 12}%`,
+              animationDelay: `${i * -2.5}s`,
+              opacity: 0.3
+            }}
+          />
+        ))}
 
-      {/* Speaker Icon Button - Upper Left */}
-      <button
-        onClick={() => {
-          if (isPlaying) {
-            audioRef.current?.pause();
-            setIsPlaying(false);
-          } else {
-            audioRef.current?.play();
-            setIsPlaying(true);
-          }
-        }}
-        className="absolute top-6 left-6 z-50 p-3 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 border border-yellow-500/50 hover:border-yellow-500 transition-all hover:scale-110 active:scale-95"
-        title={isPlaying ? "Pause" : "Play"}
-      >
-        <span className="text-2xl">{isPlaying ? "🔊" : "🔇"}</span>
-      </button>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-2xl space-y-8"
-      >
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="flex justify-center mb-6">
-            <img src="/favicon.svg" alt="Silver Tongue" className="w-20 h-20" />
+        {/* Floating Embers */}
+        {[...Array(30)].map((_, i) => (
+          <div 
+            key={i}
+            className="absolute w-1 h-1 bg-amber-500 rounded-full blur-[1px] animate-rise"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${Math.random() * 8 + 4}s`,
+              opacity: Math.random() * 0.5
+            }}
+          />
+        ))}
+      </div>
+
+      {/* --- HUD INTERFACE --- */}
+      <div className="relative z-20 h-full flex flex-col p-12 pointer-events-none">
+        
+        {/* Header Section */}
+        <div className="flex justify-between items-start animate-slide-down">
+          <div className="flex gap-6">
+             <div className="w-16 h-16 rounded-2xl border border-amber-500/40 bg-black/80 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.2)]">
+                <Crown className="text-amber-400 animate-pulse" size={32} />
+             </div>
+             <div>
+                <h1 className="text-5xl font-black italic tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-amber-100 via-amber-400 to-amber-100 animate-shimmer">
+                  SILVER TONGUE
+                </h1>
+                <div className="flex gap-4 mt-2">
+                   <span className="flex items-center gap-1 text-[9px] text-amber-500 font-black tracking-[0.3em] uppercase">
+                      <ShieldCheck size={12}/> Vault Secured
+                   </span>
+                   <span className="flex items-center gap-1 text-[9px] text-emerald-500 font-black tracking-[0.3em] uppercase">
+                      <Activity size={12}/> Data Stream Active
+                   </span>
+                </div>
+             </div>
           </div>
-          <h1 className="text-5xl font-black italic tracking-tighter text-white uppercase leading-none">
-            Welcome to <span className="text-yellow-500">Silver Tongue</span>
-          </h1>
-          {userName && (
-            <p className="text-lg text-gray-400 font-medium">
-              Greetings, <span className="text-yellow-600 font-bold">{userName}</span>
-            </p>
-          )}
+
+          <div className="bg-black/80 backdrop-blur-3xl border-r-4 border-amber-500 p-6 rounded-l-2xl min-w-[340px] shadow-2xl pointer-events-auto group">
+             <p className="text-[10px] font-black text-amber-600/50 tracking-[0.4em] uppercase mb-1">Total Reserves</p>
+             <div className="flex items-baseline gap-3">
+                <span className="text-4xl font-mono font-bold text-white tracking-tighter">
+                   ${balance.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                </span>
+                <TrendingUp size={20} className="text-emerald-500 animate-pulse" />
+             </div>
+          </div>
         </div>
 
-        {/* Menu Options */}
-        <div className="grid gap-4 mt-12">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full rounded-xl bg-yellow-500 py-6 font-black uppercase tracking-widest text-black hover:bg-yellow-400 transition-all shadow-lg shadow-yellow-600/20"
+        {/* Center: Command Node Grid */}
+        <div className="flex-1 flex items-center justify-center pointer-events-auto">
+          <div 
+            className="relative w-full max-w-6xl grid grid-cols-4 gap-8 transition-transform duration-700 ease-out"
+            style={{ transform: `rotateY(${mouse.x * 0.25}deg) rotateX(${mouse.y * -0.25}deg)` }}
           >
-            ⚔️ Start Quest
-          </motion.button>
+            {menu.map((item, i) => (
+              <button
+                key={i}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                className={`group relative h-[480px] bg-black/60 backdrop-blur-xl border border-amber-500/10 rounded-[2.5rem] overflow-hidden transition-all duration-700 cursor-pointer ${item.color} hover:border-amber-400/60 hover:-translate-y-10`}
+              >
+                {/* Internal Glow Shaders */}
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute -top-20 -left-20 w-64 h-64 bg-amber-400/5 blur-[100px] group-hover:bg-amber-400/20 transition-all duration-1000" />
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full rounded-xl border border-yellow-600/50 bg-gray-900/50 py-6 font-black uppercase tracking-widest text-yellow-500 hover:bg-gray-900 hover:border-yellow-500 transition-all"
-          >
-            💰 View Treasury
-          </motion.button>
+                <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                  <div className="flex justify-between items-start">
+                    <div className="p-5 bg-amber-500/5 rounded-3xl text-amber-400 group-hover:bg-amber-500 group-hover:text-black group-hover:rotate-[360deg] transition-all duration-1000 ease-in-out">
+                      {item.icon}
+                    </div>
+                    <div className="h-8 w-px bg-amber-500/20 group-hover:h-16 transition-all duration-700" />
+                  </div>
 
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full rounded-xl border border-yellow-600/50 bg-gray-900/50 py-6 font-black uppercase tracking-widest text-yellow-500 hover:bg-gray-900 hover:border-yellow-500 transition-all"
-          >
-            📜 Quest Log
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full rounded-xl border border-yellow-600/50 bg-gray-900/50 py-6 font-black uppercase tracking-widest text-yellow-500 hover:bg-gray-900 hover:border-yellow-500 transition-all"
-          >
-            ⚙️ Settings
-          </motion.button>
-
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={handleLogout}
-            className="w-full mt-4 rounded-xl border border-red-900/50 bg-gray-900/30 py-4 font-bold uppercase tracking-widest text-red-500 hover:bg-red-900/20 hover:border-red-700 transition-all"
-          >
-            🚪 Leave Realm
-          </motion.button>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center pt-8">
-          <div className="flex gap-2 justify-center mb-4">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span key={star} className="text-yellow-500 text-xl">★</span>
+                  <div>
+                    <p className="text-[10px] font-black tracking-[0.5em] text-amber-700 mb-3 uppercase">{item.sub}</p>
+                    <h3 className="text-4xl font-black italic tracking-tighter text-white group-hover:text-amber-400 transition-colors">
+                      {item.label}
+                    </h3>
+                    <div className="w-4 group-hover:w-full h-[2px] bg-gradient-to-r from-amber-500 to-transparent mt-6 transition-all duration-1000" />
+                  </div>
+                </div>
+              </button>
             ))}
           </div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-gray-700 font-bold">
-            © MMXXVI Silver Tongue
-          </p>
         </div>
-      </motion.div>
+
+        {/* Footer & Refined Disconnect */}
+        <div className="flex justify-between items-end animate-slide-up">
+           <div className="bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 flex gap-12">
+              <div className="space-y-2">
+                 <p className="text-[9px] font-black tracking-[0.4em] text-zinc-500 uppercase">Influence Rank</p>
+                 <div className="flex gap-1.5">
+                    {[...Array(12)].map((_, i) => (
+                       <div key={i} className={`h-1.5 w-3 rounded-sm ${i < 9 ? 'bg-amber-500' : 'bg-white/5'} shadow-[0_0_8px_rgba(251,191,36,0.3)]`} />
+                    ))}
+                 </div>
+              </div>
+              <div className="h-8 w-px bg-white/10" />
+              <div className="space-y-1">
+                 <p className="text-[9px] font-black tracking-[0.4em] text-zinc-500 uppercase">Terminal Status</p>
+                 <p className="text-xs font-mono font-bold text-amber-200 uppercase tracking-tighter italic">Alpha-Zenith Build</p>
+              </div>
+           </div>
+
+           {/* CRIMSON-GOLD DISCONNECT BUTTON */}
+           <button className="group relative flex items-center gap-6 p-5 px-14 bg-gradient-to-r from-[#2a0000] to-[#4a0000] hover:from-[#600] hover:to-[#800] border border-red-950 hover:border-red-500/50 rounded-2xl transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)] cursor-pointer overflow-hidden pointer-events-auto">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative z-10 text-[11px] font-black tracking-[0.6em] text-red-200/60 group-hover:text-red-100 transition-colors">DISCONNECT</span>
+              <LogOut size={22} className="relative z-10 text-red-700 group-hover:text-red-400 group-hover:translate-x-3 transition-all duration-500" />
+           </button>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        @keyframes float-slow { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-30px) rotate(1.5deg); } }
+        @keyframes rise { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 50% { opacity: 0.6; } 100% { transform: translateY(-100px) scale(2); opacity: 0; } }
+        .animate-shimmer { background-size: 200% auto; animation: shimmer 10s linear infinite; }
+        .animate-float-slow { animation: float-slow 15s ease-in-out infinite; }
+        .animate-rise { animation: rise infinite linear; }
+        .animate-slide-down { animation: slide-down 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .animate-slide-up { animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slide-down { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
     </div>
   );
 };
 
-export default MainMenu;
+export default ZenithVault;
