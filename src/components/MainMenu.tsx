@@ -99,15 +99,11 @@ const ZenithVault = () => {
              </div>
           </div>
 
-          <div className="bg-black/80 backdrop-blur-3xl border-r-4 border-amber-500 p-6 rounded-l-2xl min-w-[340px] shadow-2xl pointer-events-auto group">
-             <p className="text-[10px] font-black text-amber-600/50 tracking-[0.4em] uppercase mb-1">Total Reserves</p>
-             <div className="flex items-baseline gap-3">
-                <span className="text-4xl font-mono font-bold text-white tracking-tighter">
-                   ${balance.toLocaleString(undefined, {minimumFractionDigits: 2})}
-                </span>
-                <TrendingUp size={20} className="text-emerald-500 animate-pulse" />
-             </div>
-          </div>
+          <button className="group relative flex items-center gap-4 p-4 px-8 bg-gradient-to-r from-[#2a0000] to-[#4a0000] hover:from-[#600] hover:to-[#800] border border-red-950 hover:border-red-500/50 rounded-2xl transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)] cursor-pointer overflow-hidden pointer-events-auto">
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity" />
+             <span className="relative z-10 text-[10px] font-black tracking-[0.4em] text-red-200/60 group-hover:text-red-100 transition-colors">DISCONNECT</span>
+             <LogOut size={18} className="relative z-10 text-red-700 group-hover:text-red-400 group-hover:translate-x-2 transition-all duration-500" />
+          </button>
         </div>
 
         {/* Center: Command Node Grid */}
