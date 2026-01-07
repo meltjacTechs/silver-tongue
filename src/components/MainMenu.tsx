@@ -27,10 +27,10 @@ const ZenithVault = () => {
   }, []);
 
   const menu = [
-    { label: 'INITIATE', sub: 'QUEST LINE', icon: <Zap />, color: 'hover:shadow-[0_0_50px_rgba(251,191,36,0.3)]' },
-    { label: 'TREASURY', sub: 'ASSET MAP', icon: <Wallet />, color: 'hover:shadow-[0_0_50px_rgba(245,158,11,0.3)]' },
-    { label: 'ARCHIVES', sub: 'DATA LOGS', icon: <Scroll />, color: 'hover:shadow-[0_0_50px_rgba(217,119,6,0.3)]' },
-    { label: 'SETTINGS', sub: 'TERMINAL', icon: <Settings />, color: 'hover:shadow-[0_0_50px_rgba(161,161,170,0.3)]' },
+    { label: 'INITIATE', sub: 'QUEST LINE', icon: <Zap />, color: 'hover:shadow-[0_0_50px_rgba(251,191,36,0.3)]', emoticon: '/emoticons/initiate.webm' },
+    { label: 'TREASURY', sub: 'ASSET MAP', icon: <Wallet />, color: 'hover:shadow-[0_0_50px_rgba(245,158,11,0.3)]', emoticon: '/emoticons/treasury.webm' },
+    { label: 'ARCHIVES', sub: 'DATA LOGS', icon: <Scroll />, color: 'hover:shadow-[0_0_50px_rgba(217,119,6,0.3)]', emoticon: '/emoticons/archives.webm' },
+    { label: 'SETTINGS', sub: 'TERMINAL', icon: <Settings />, color: 'hover:shadow-[0_0_50px_rgba(161,161,170,0.3)]', emoticon: '/emoticons/settings.webm' },
   ];
 
   return (
@@ -125,6 +125,18 @@ const ZenithVault = () => {
                 {/* Internal Glow Shaders */}
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="absolute -top-20 -left-20 w-64 h-64 bg-amber-400/5 blur-[100px] group-hover:bg-amber-400/20 transition-all duration-1000" />
+
+                {/* Emoticon Video */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-60 transition-opacity duration-700">
+                  <video 
+                    src={item.emoticon} 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="w-32 h-32 object-contain"
+                  />
+                </div>
 
                 <div className="absolute inset-0 p-10 flex flex-col justify-between">
                   <div className="flex justify-between items-start">
