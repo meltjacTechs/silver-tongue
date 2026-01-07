@@ -4,6 +4,7 @@ import {
   TrendingUp, ShieldCheck, Crown,
   ArrowUpRight, Activity
 } from 'lucide-react';
+import Sound from './Sound';
 
 const ZenithVault = () => {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -81,7 +82,7 @@ const ZenithVault = () => {
         <div className="flex justify-between items-start animate-slide-down">
           <div className="flex gap-6">
              <div className="w-16 h-16 rounded-2xl border border-amber-500/40 bg-black/80 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.2)]">
-                <Crown className="text-amber-400 animate-pulse" size={32} />
+                <img src="/favicon.svg" alt="Silver Tongue" className="w-8 h-8 animate-pulse" />
              </div>
              <div>
                 <h1 className="text-5xl font-black italic tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-amber-100 via-amber-400 to-amber-100 animate-shimmer">
@@ -89,10 +90,10 @@ const ZenithVault = () => {
                 </h1>
                 <div className="flex gap-4 mt-2">
                    <span className="flex items-center gap-1 text-[9px] text-amber-500 font-black tracking-[0.3em] uppercase">
-                      <ShieldCheck size={12}/> Vault Secured
+                      <ShieldCheck size={12}/> Wealth Protected
                    </span>
                    <span className="flex items-center gap-1 text-[9px] text-emerald-500 font-black tracking-[0.3em] uppercase">
-                      <Activity size={12}/> Data Stream Active
+                      <Activity size={12}/> Money talks
                    </span>
                 </div>
              </div>
@@ -157,32 +158,6 @@ const ZenithVault = () => {
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Footer & Refined Disconnect */}
-        <div className="flex justify-between items-end animate-slide-up">
-           <div className="bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/5 flex gap-12">
-              <div className="space-y-2">
-                 <p className="text-[9px] font-black tracking-[0.4em] text-zinc-500 uppercase">Influence Rank</p>
-                 <div className="flex gap-1.5">
-                    {[...Array(12)].map((_, i) => (
-                       <div key={i} className={`h-1.5 w-3 rounded-sm ${i < 9 ? 'bg-amber-500' : 'bg-white/5'} shadow-[0_0_8px_rgba(251,191,36,0.3)]`} />
-                    ))}
-                 </div>
-              </div>
-              <div className="h-8 w-px bg-white/10" />
-              <div className="space-y-1">
-                 <p className="text-[9px] font-black tracking-[0.4em] text-zinc-500 uppercase">Terminal Status</p>
-                 <p className="text-xs font-mono font-bold text-amber-200 uppercase tracking-tighter italic">Alpha-Zenith Build</p>
-              </div>
-           </div>
-
-           {/* CRIMSON-GOLD DISCONNECT BUTTON */}
-           <button className="group relative flex items-center gap-6 p-5 px-14 bg-gradient-to-r from-[#2a0000] to-[#4a0000] hover:from-[#600] hover:to-[#800] border border-red-950 hover:border-red-500/50 rounded-2xl transition-all duration-500 shadow-[0_0_30px_rgba(0,0,0,0.5)] cursor-pointer overflow-hidden pointer-events-auto">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <span className="relative z-10 text-[11px] font-black tracking-[0.6em] text-red-200/60 group-hover:text-red-100 transition-colors">DISCONNECT</span>
-              <LogOut size={22} className="relative z-10 text-red-700 group-hover:text-red-400 group-hover:translate-x-3 transition-all duration-500" />
-           </button>
         </div>
       </div>
 
